@@ -24,6 +24,14 @@ Laymbda has no long-running servers. CDK packages the runtime as an x86-64 conta
   <img src="assets/architecture.png" alt="Laymbda AWS architecture">
 </p>
 
+### Architectural Trade-offs
+
+Using AWS Lambda is not the most conventional choice for running ML workloads due to its resource limits and lack of GPU acceleration.
+
+However, Laya’s encoder-only ModernBERT architecture makes CPU inference practical within Lambda’s execution environment. A serverless, event-driven approach can be effective for bursty, stateless inference workloads where Lambda scales execution environments within the configured concurrency limit, while Snapstart restores the model fast instead of loading it from scratch for every new environment.
+
+It is less suitable though for sustained high-throughput inference requiring a GPU, or applications that require consistently low tail latency.
+
 ## 🚀 Quick Start
 
 Run every command in this guide from the project root.
