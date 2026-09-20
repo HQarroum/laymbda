@@ -1,0 +1,67 @@
+{
+  "state": {
+    "from": "customer@acme.com",
+    "subject": "Duplicate annual charge and cancellation request",
+    "body": "We were charged twice for our annual plan. The duplicate charge has blocked this month's budget and our finance team needs a refund today. If this cannot be resolved quickly, we will cancel the account. The message contains no links or attachments."
+  },
+  "questions": {
+    "department": {
+      "type": "choice",
+      "instructions": "Which department should handle this request?",
+      "criteria": {
+        "billing": "payments, invoices, charges, and refunds",
+        "technical": "software defects, outages, and integrations",
+        "sales": "pricing, contracts, and new purchases",
+        "other": "anything outside the other categories"
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "How urgent is this request?",
+      "criteria": ["routine", "needs attention soon", "business critical"]
+    },
+    "churn_risk": {
+      "type": "noul",
+      "instructions": "Does the customer threaten to cancel?"
+    },
+    "refund_requested": {
+      "type": "noul",
+      "instructions": "Does the customer explicitly request a refund?"
+    },
+    "payment_related": {
+      "type": "noul",
+      "instructions": "Is the request related to a payment?"
+    },
+    "is_phishing": {
+      "type": "noul",
+      "instructions": "Does the message appear to be phishing?"
+    },
+    "customer_sentiment": {
+      "type": "score",
+      "instructions": "How negative is the customer's sentiment?",
+      "criteria": [
+        "positive or neutral",
+        "frustrated",
+        "extremely dissatisfied"
+      ]
+    },
+    "next_action": {
+      "type": "choice",
+      "instructions": "What should the support team do next?",
+      "criteria": {
+        "investigate_charge": "verify the duplicate payment",
+        "request_logs": "collect technical diagnostics",
+        "schedule_demo": "arrange a product demonstration",
+        "close_ticket": "no further work is needed"
+      }
+    },
+    "deadline_present": {
+      "type": "noul",
+      "instructions": "Does the customer state a deadline?"
+    },
+    "contains_attachment": {
+      "type": "noul",
+      "instructions": "Does the message mention an attachment?"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+aws-lambda-powertools[tracer]==3.35.0
+huggingface-hub==1.32.0
+laya==0.3.4
+numpy==2.5.3
+pydantic==2.13.5
+safetensors==0.8.0
+setuptools==84.0.0
+transformers==5.17.0

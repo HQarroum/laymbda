@@ -1,0 +1,44 @@
+# Dependencies and virtual environments
+node_modules/
+.venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Build output
+cdk.out/
+dist/
+*.tsbuildinfo
+
+# Test and tool output
+coverage/
+.vitest/
+.oxlintcache
+
+# Benchmark results
+benchmark/results/*
+!benchmark/results/.gitkeep
+
+# Local configuration and responses
+.env
+.env.*
+!.env.example
+cdk.context.json
+response.json
+
+# Editor and operating-system files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local agent tooling
+.agents/
+skills-lock.json
+
+# npm logs
+npm-debug.log*

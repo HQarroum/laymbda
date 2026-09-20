@@ -1,0 +1,32 @@
+{
+  "state": {
+    "from": "user@acme.com",
+    "subject": "Duplicate charge on invoice #4411",
+    "body": "We were billed twice for March. Please refund the duplicate today or we will cancel our plan."
+  },
+  "questions": {
+    "department": {
+      "type": "choice",
+      "instructions": "Which department should handle this email?",
+      "criteria": {
+        "billing": "invoices, payments, and refunds",
+        "technical": "bugs, outages, and system errors",
+        "sales": "pricing and new contracts",
+        "other": "anything outside the other categories"
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "How urgent is this request?",
+      "criteria": [
+        "not urgent",
+        "needs attention soon",
+        "critical deadline or blocking issue"
+      ]
+    },
+    "churn_risk": {
+      "type": "noul",
+      "instructions": "Does the user threaten to cancel or leave?"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "state": "The checkout was fast, simple, and completed successfully.",
+  "questions": {
+    "sentiment": {
+      "type": "choice",
+      "instructions": "What is the overall sentiment?",
+      "criteria": ["negative", "neutral", "positive"]
+    }
+  }
+}

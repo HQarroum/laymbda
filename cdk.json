@@ -1,0 +1,11 @@
+{
+  "app": "npx tsx --tsconfig tsconfig.json bin/laymbda.ts",
+  "context": {
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:annotationsInValidationReport": true,
+    "@aws-cdk/core:checkSecretUsage": true,
+    "@aws-cdk/core:validateAgainstDefaultRules": true,
+    "@aws-cdk/core:validateSnapshotRemovalPolicy": true,
+    "@aws-cdk/customresources:installLatestAwsSdkDefault": false
+  }
+}

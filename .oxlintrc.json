@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "import",
+    "jsdoc",
+    "unicorn",
+    "oxc",
+    "vitest",
+    "promise",
+    "node"
+  ],
+  "rules": {
+    "eslint/curly": "error",
+    "eslint/eqeqeq": "error",
+    "eslint/no-array-constructor": "error",
+    "eslint/no-magic-numbers": "off",
+    "eslint/no-nested-ternary": "error",
+    "eslint/no-new-func": "error",
+    "eslint/no-var": "error",
+    "eslint/prefer-const": "warn",
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "import/no-duplicates": "error",
+    "node/no-exports-assign": "error",
+    "node/no-process-env": "error",
+    "oxc/no-barrel-file": "error",
+    "promise/valid-params": "error",
+    "typescript/consistent-type-definitions": ["error", "type"],
+    "typescript/consistent-type-imports": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/no-namespace": "error",
+    "typescript/no-non-null-assertion": "error",
+    "typescript/prefer-for-of": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["src/config/env.ts"],
+      "rules": {
+        "node/no-process-env": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["cdk.out/**", "coverage/**", "node_modules/**"]
+}

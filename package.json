@@ -1,0 +1,45 @@
+{
+  "name": "laymbda",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Serverless Laya inference on AWS Lambda.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HQarroum/laymbda.git"
+  },
+  "type": "module",
+  "scripts": {
+    "benchmark": "cd benchmark && uv run --locked locust -f locustfile.py",
+    "benchmark:check": "cd benchmark && uv run --locked ruff check . ../runtime && uv run --locked ruff format --check . ../runtime && uv run --locked pytest tests ../runtime/tests",
+    "benchmark:format": "cd benchmark && uv run --locked ruff check --fix . ../runtime && uv run --locked ruff format . ../runtime",
+    "benchmark:report": "cd benchmark && uv run --locked python -m laymbda_benchmark.report",
+    "build": "tsc",
+    "bootstrap": "npx cdk bootstrap",
+    "check": "npm run typecheck && npm run lint && npm test && npm run benchmark:check",
+    "deploy": "npx cdk deploy",
+    "destroy": "npx cdk destroy",
+    "diff": "npx cdk diff",
+    "lint": "oxlint .",
+    "synth": "npx cdk synth",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.270.0",
+    "constructs": "10.8.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.6",
+    "aws-cdk": "2.1142.0",
+    "oxlint": "1.83.0",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2",
+    "vitest": "5.0.1"
+  },
+  "engines": {
+    "node": ">=22.17.0"
+  },
+  "packageManager": "npm@11.12.0"
+}

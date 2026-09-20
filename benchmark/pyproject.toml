@@ -1,0 +1,24 @@
+[project]
+name = "laymbda-benchmark"
+version = "0.1.0"
+description = "Reproducible load and latency benchmarks for Laymbda."
+requires-python = ">=3.12,<3.13"
+dependencies = ["boto3>=1.43.63,<2", "locust>=2.45.0,<3"]
+
+[dependency-groups]
+dev = ["pydantic>=2.13.5,<3", "pytest>=9.1.1,<10", "ruff>=0.15.22,<0.16"]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "../runtime"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["B", "C4", "E", "F", "I", "N", "PERF", "RUF", "SIM", "UP"]
+
+[tool.uv]
+exclude-newer = "7 days"
+package = false
