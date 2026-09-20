@@ -9,15 +9,15 @@
 
 ## What's this ❓
 
-Laymbda is an example of how to run the Laya System-1 decision model on AWS Lambda using a CPU-only, serverless architecture. It is backed by the [Lambda SnapStart for containers](https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks-custom.html) engine to cache and restore initialized lambda states quickly.
+Laymbda is an example of how to run the Laya System-1 decision model on AWS Lambda using a CPU-only, serverless architecture. It is backed by [Lambda SnapStart for container functions](https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks-custom.html), which caches and restores initialized Lambda states quickly.
 
 This project uses the [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) as the Infrastructure-as-Code layer, and requires Node.js, Docker, npm, and AWS credentials configured for the target account and region.
 
-> All credits goes to the [Laya project](https://github.com/NandhaKishorM/laya).
+> All credit goes to the [Laya project](https://github.com/NandhaKishorM/laya).
 
 ## Architecture
 
-Laymbda has no long-running servers. CDK packages the runtime as an X86-64 container image, Lambda loads Laya during initialization, and SnapStart captures the initialized process when CDK publishes a version.
+Laymbda has no long-running servers. CDK packages the runtime as an x86-64 container image, Lambda loads Laya during initialization, and SnapStart captures the initialized process when CDK publishes a version.
 
 <br />
 <p align="center">
@@ -33,7 +33,7 @@ Run every command in this guide from the project root.
 Install the project dependencies:
 
 ```bash
-npm i
+npm ci
 ```
 
 ### Bootstrap
@@ -48,7 +48,7 @@ npm run bootstrap
 
 #### Deploy
 
-AWS CDK builds the image during the deployment using Docker, downloads the pinned Laya checkpoint, pushes the image to ECR, and publishes a Snapstart-enabled Lambda version behind the `live` alias.
+AWS CDK builds the image during deployment using Docker, downloads the pinned Laya checkpoint, pushes the image to ECR, and publishes a SnapStart-enabled Lambda version behind the `live` alias.
 
 ```bash
 npm run deploy
@@ -81,13 +81,13 @@ cat response.json
 
 ## 🧪 Benchmarks
 
-The benchmark used a 4 GB lambda memory configuration using the Laya model, example payload, and X86-64 runtime with FP16 weights. Sequential requests were used against a single Lambda container with a maximum concurrency of one.
+The benchmark used a 4 GB Lambda memory configuration with the Laya model, example payload, and x86-64 runtime with FP16 weights. Sequential requests were sent to a single Lambda container with a maximum concurrency of one.
 
 > AWS Lambda scales the number of vCPUs with the allocated memory.
 
 > SDK retries were disabled for the benchmark.
 
-| Metric | 4 GB X86-64 |
+| Metric | 4 GB x86-64 |
 | --- | ---: |
 | Warm average latency | 2.022 s |
 | Warm p95 latency | 2.051 s |
@@ -99,7 +99,7 @@ The benchmark used a 4 GB lambda memory configuration using the Laya model, exam
 
 ## 💰 Cost
 
-The estimates use the measured warm duration of the 4 GB X86-64 function in `eu-west-1`. They exclude ECR, observability, data transfer, taxes, and Free Tier discounts. See the [AWS Lambda pricing](https://aws.amazon.com/lambda/pricing/) page for regional rates.
+The estimates use the measured warm duration of the 4 GB x86-64 function in `eu-west-1`. They exclude ECR, observability, data transfer, taxes, and Free Tier discounts. See the [AWS Lambda pricing](https://aws.amazon.com/lambda/pricing/) page for regional rates.
 
 > Laymbda sets a [reserved concurrency](https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html) to **10** by default, limiting simultaneous invocations and burst scale-out.
 
