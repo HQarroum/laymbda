@@ -30,6 +30,19 @@ response. Each question requires a `type` and `instructions` value. The
 runtime accepts any JSON value for `instructions`, though the examples use
 plain strings.
 
+## Token limits
+
+The bundled English checkpoint has a 512-token context for each question.
+Question instructions and criteria can consume up to roughly 192 tokens,
+leaving about 320 tokens for the state. Shorter questions leave more room for
+the state.
+
+Laya keeps the beginning of a state that exceeds the available context and
+truncates the remainder. Choice and score criteria share the question budget,
+so large or verbose criteria sets leave less room for the state and may be
+shortened. An invocation fails if Laya cannot represent every option within
+the configured token budget.
+
 ## Choice questions
 
 A `choice` question selects one named alternative. Its `criteria` can be a
