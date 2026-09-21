@@ -30,6 +30,7 @@ const stack = new LaymbdaStack(app, 'LaymbdaStack', { env });
 
 /**
  * Acknowledge the AWS CDK SnapStart requirement warning for the Lambda function.
+ * Laymbda already publishes the current function version behind the `live` alias.
  */
 cdk.Annotations.of(stack).acknowledgeWarning(
   '@aws-cdk/aws-lambda:snapStartRequirePublish',

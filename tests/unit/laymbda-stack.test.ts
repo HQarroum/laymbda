@@ -18,6 +18,11 @@ const TEST_REGION = 'eu-west-1';
  * Unit tests for the `LaymbdaStack`.
  */
 describe('LaymbdaStack', () => {
+
+  /**
+   * Tests whether a x64 image is created with Lambda Snapstart
+   * properly configured.
+   */
   it('creates an x86_64 image function with SnapStart', () => {
     const app = new cdk.App();
     const stack = new LaymbdaStack(app, 'TestStack', {
@@ -50,15 +55,21 @@ describe('LaymbdaStack', () => {
       }
     });
 
+    // Check the function alias.
     template.hasResourceProperties('AWS::Lambda::Alias', {
       Name: 'live'
     });
+
+    // Check the CloudWatch Logs group output.
     template.hasOutput('LogGroupName', {
       Description: 'CloudWatch Logs group containing Lambda execution reports.'
     });
     expect(stack.inference.liveAlias.aliasName).toBe('live');
   });
 
+  /**
+   * Tests whether the runtime is denied access to Amazon S3.
+   */
   it('does not grant the runtime access to Amazon S3', () => {
     const app = new cdk.App();
     const stack = new LaymbdaStack(app, 'TestStack', {
