@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import Any
 
-import torch
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from inference import INFERENCE
 from observability import LOGGER, TRACER
@@ -48,17 +47,14 @@ def handler(
         )
         raise InvalidRequestError(f"Laya rejected the request: {error}") from error
 
-    rounded_duration_ms = round(duration_ms, 2)
+    # Logging inference completion details.
     LOGGER.info(
         "Inference completed",
         extra={
-            "duration_ms": rounded_duration_ms,
+            "duration_ms": round(duration_ms, 2),
             "question_count": len(request.questions),
-            "state_type": type(request.state).__name__,
-            "torch_threads": torch.get_num_threads(),
         },
     )
-    TRACER.put_annotation("QuestionCount", len(request.questions))
 
     return result | {
         "metadata": {
