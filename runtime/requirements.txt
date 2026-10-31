@@ -4,5 +4,5 @@ laya==0.3.4
 numpy==2.5.3
 pydantic==2.13.5
 safetensors==0.8.0
-setuptools==84.0.0
+setuptools==84.1.0
 transformers==5.17.0
